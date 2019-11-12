@@ -1,5 +1,6 @@
 package com.example.watter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,7 +14,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,9 +40,16 @@ public class MainActivity extends AppCompatActivity {
         });
         edMonthly = findViewById(R.id.month);
         edNext = findViewById(R.id.next);
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fee();
+            }
+        });
     }
 
-    public void fee(View view) {
+    public void fee() {
         String monthString = edMonthly.getText().toString();
         if (!TextUtils.isEmpty(monthString)) {
             float degree = Float.parseFloat(monthString);
@@ -53,11 +63,13 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 fee = degree * 12.075f - 110.5f;
             }
-            new AlertDialog.Builder(this)
-                    .setTitle("month")
-                    .setMessage("Fee: " + fee)
-                    .setPositiveButton("OK", null)
-                    .show();
+            Intent intent = new Intent(this, ResultActivity.class);
+            startActivity(intent);
+//            new AlertDialog.Builder(this)
+//                    .setTitle("month"
+//                    .setMessage("Fee: " + fee)
+//                    .setPositiveButton("OK", null)
+//                    .show();
         } else {
             String nextString = edNext.getText().toString();
             if (!TextUtils.isEmpty(nextString)) {
@@ -72,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     fee = degree * 12.075f - 220.5f;
                 }
-                new AlertDialog.Builder(this)
-                        .setTitle("next")
-                        .setMessage("Fee: " + fee)
-                        .setPositiveButton("OK", null)
-                        .show();
+//                new AlertDialog.Builder(this)
+//                        .setTitle("next")
+//                        .setMessage("Fee: " + fee)
+//                        .setPositiveButton("OK", null)
+//                        .show();
 
             }
         }
