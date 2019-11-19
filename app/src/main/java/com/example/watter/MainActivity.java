@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 fee = degree * 12.075f - 110.5f;
             }
             Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra("FEE", fee);
             startActivity(intent);
 //            new AlertDialog.Builder(this)
 //                    .setTitle("month"
