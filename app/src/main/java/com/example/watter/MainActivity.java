@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 fee = degree * 12.075f - 110.5f;
             }
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra("FEE", fee);
+            intent.putExtra(getString(R.string.extra_fee), fee);
             startActivity(intent);
 //            new AlertDialog.Builder(this)
-//                    .setTitle("month"
-//                    .setMessage("Fee: " + fee)
-//                    .setPositiveButton("OK", null)
+//                    .setTitle("month")
+//                    .setMessage(getString(R.string.fee) + fee)
+//                    .setPositiveButton(getString(R.string.ok), null)
 //                    .show();
         } else {
             String nextString = edNext.getText().toString();
