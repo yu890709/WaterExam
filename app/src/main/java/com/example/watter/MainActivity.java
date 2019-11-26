@@ -15,13 +15,16 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText edNext;
     private EditText edMonthly;
+    boolean isNext = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         edMonthly = findViewById(R.id.month);
-        edNext = findViewById(R.id.next);
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fee();
+            }
+        });
+        Switch sw = findViewById(R.id.sw);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isNext = isChecked;
+                TextView text = findViewById(R.id.type);
+                text.setText(isNext ? getString(R.string.every_other_month) : getString(R.string.monthly));
             }
         });
     }
@@ -71,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
 //                    .setMessage(getString(R.string.fee) + fee)
 //                    .setPositiveButton(getString(R.string.ok), null)
 //                    .show();
-        } else {
+        }
+
+        /*else {
             String nextString = edNext.getText().toString();
             if (!TextUtils.isEmpty(nextString)) {
                 float degree = Float.parseFloat(nextString);
@@ -92,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 //                        .show();
 
             }
-        }
+        }*/
 
     }
 
