@@ -37,6 +37,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     int n;
+    int m;
     private static final String TAG = MainActivity.class.getSimpleName();
     private EditText edMonthly;
     boolean isNext = false;
